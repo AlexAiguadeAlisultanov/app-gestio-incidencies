@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('incidencies', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('precio');
-            $table->string('stock');
+            $table->string('descripcion');
+            $table->string('tipo');
+            $table->integer('estado');
             $table->string('img');
             $table->timestamps();
             $table->softDeletes();
