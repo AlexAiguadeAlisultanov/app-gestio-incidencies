@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contactes', function (Blueprint $table) {
+        Schema::create('Reparadors', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->string('email');
+            $table->string('telefono');
+            $table->string('direccion');
+            $table->string('ciudad');
             $table->timestamps();
         });
     }
