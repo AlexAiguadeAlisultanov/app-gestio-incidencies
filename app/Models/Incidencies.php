@@ -10,5 +10,17 @@ class Incidencies extends Model
     use HasFactory;
     protected $table = 'incidencies';
 
-    protected $fillable = ['nombre','descripcion', 'precio', 'stock', 'imagen']; 
+
+    protected $fillable = [
+        'titol',
+        'descripcio',
+        'data',
+        'hora',
+        'estat',
+        'lloc',
+        'user_id',
+        'categoria_id',
+    ];
+
+
 }

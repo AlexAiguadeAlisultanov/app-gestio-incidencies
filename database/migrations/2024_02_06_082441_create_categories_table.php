@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incidencies', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('titol');
-            $table->string('descripcio');
-            $table->date('data');
-            $table->time('hora');
-            $table->string('estat');
-            $table->string('lloc');
-            $table->integer('user_id');
-            $table->integer('categoria_id');
+            $table->string('tipus');
+            $table->integer('reparador_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incidencies');
+        Schema::dropIfExists('categories');
     }
 };
