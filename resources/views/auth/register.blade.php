@@ -39,6 +39,13 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- Rol del Usuario -->
+        <div class="mt-4">
+            <x-input-label for="rol_usuari" :value="__('Rol del Usuario')" />
+            <x-text-input id="rol_usuari" class="block mt-1 w-full" type="text" name="rol_usuari" :value="old('rol_usuari')" required autofocus />
+            <x-input-error :messages="$errors->get('rol_usuari')" class="mt-2" />
+        </div>
+        
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
