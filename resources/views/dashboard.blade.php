@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <a href="whatsapp://send?phone=684258353&text=puto tonto" data-action="share/whatsapp/share">Share via Whatsapp</a>
                 </div>
             </div>
         </div>
