@@ -19,118 +19,141 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LD65H6P9IkOz5jqm4KPHv9JwR+pL/LThbYL7nE/T3sIpxcAzz5W3wAPMhiZ9j1Wz" crossorigin="anonymous"></script>
     <title>Título de tu página</title>
 </head>
-
 <body>
-
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="container">
-                    <div class="titulo">Actualizar Incidencies</div>
-                    <section class="panel border border-dark">
-                        <div class="panel-body">
-                            @if (!empty($incidencies->id))
+                    <section class="panel">
+                        @if (!empty($incidencies->id))
 
-                            <div class="mb3">
-                                <label for="nombre" class="negrita">Nombre:</label>
-                                <div>
-                                    <input class="form-control" placeholder="Introduce el nombre del producto" required="required" name="nombre" type="text" id="nombre" value="{{ $incidencies->nombre }}">
-                                </div>
+                        <div class="mb-3">
+                            <label for="nombre" class="negrita">Nombre:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el nombre del producto" required="required" name="nombre" type="text" id="nombre">
                             </div>
-
-                            <div class="mb3">
-                                <label for="descripcion" class="negrita">Descripcion:</label>
-                                <div>
-                                    <input class="form-control" placeholder="Introduce la descripcion" required="required" name="nombre" type="text" id="nombre" value="{{ $incidencies->descripcion }}">
-                                </div>
-                            </div>
-
-                            <div class="mb3">
-                                <label for="precio" class="negrita">Precio:</label>
-                                <div>
-                                    <input class="form-control" placeholder="Introduce el precio" required="required" name="precio" type="text" id="precio" value="{{ $incidencies->precio }}">
-                                </div>
-                            </div>
-
-                            <div class="mb3">
-                                <label for="stock" class="negrita">Stock:</label>
-                                <div>
-                                    <input class="form-control" placeholder="Introduce el stock" required="required" name="stock" type="text" id="stock" value="{{ $incidencies->stock }}">
-                                </div>
-                            </div>
-
-                            <div class="mb3">
-                                <label for="img" class="negrita">Selecciona una imagen:</label>
-                                <div>
-                                    <input name="imagen" type="file" id="img">
-                                    <br>
-                                    <br>
-                                    @if (!empty($incidencies->imagen))
-
-                                    <span>Imagen Actual: </span>
-                                    <br>
-                                    <img src="../../../uploads/{{ $incidencies->imagen }}" width="200" class="img-fluid">
-
-                                    @else
-
-                                    <!-- Aún no se ha cargado una imagen para este producto -->
-
-                                    @endif
-                                </div>
-                            </div>
-
-                            @else
-
-                            <!--  Acá el formulario en Limpio para crear un nuevo registro -->
-
-                            <div class="mb-3">
-                                <label for="nombre" class="negrita">Nombre:</label>
-                                <div>
-                                    <input class="form-control" placeholder="Zapatos Marrones de Cuero" required="required" name="nombre" type="text" id="nombre">
-                                </div>
-                            </div>
-
-                            <div class="mb3">
-                                <label for="descripcion" class="negrita">Descripcion:</label>
-                                <div>
-                                    <input class="form-control" placeholder="Introduce la descripcion" required="required" name="descripcion" type="text" id="descripcion">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="precio" class="negrita">Precio:</label>
-                                <div>
-                                    <input class="form-control" placeholder="4.50" required="required" name="precio" type="text" id="precio">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="stock" class="negrita">Stock:</label>
-                                <div>
-                                    <input class="form-control" placeholder="40" required="required" name="stock" type="text" id="stock">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="img" class="negrita">Selecciona una imagen:</label>
-                                <div>
-                                    <input name="imagen" type="file" id="img">
-                                </div>
-                            </div>
-
-                            @endif
-
-                            <button type="submit" class="btn btn-info">Guardar</button>
-                            <a href="{{ route('profesors/incidencies') }}" class="btn btn-warning">Cancelar</a>
-
-                            <br>
-                            <br>
                         </div>
+
+                        <div class="mb3">
+                            <label for="descripcion" class="negrita">Descripcion:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce la descripcion" required="required" name="descripcion" type="text" id="descripcion">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="data" class="negrita">Data:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce la data" required="required" name="data" type="text" id="data" value="{{ $incidencies->data ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="hora" class="negrita">Hora:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce la hora" required="required" name="hora" type="text" id="hora" value="{{ $incidencies->hora ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="estat" class="negrita">Estat:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el estat" required="required" name="estat" type="text" id="estat" value="{{ $incidencies->estat ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="lloc" class="negrita">Lloc:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el lloc" required="required" name="lloc" type="text" id="lloc" value="{{ $incidencies->lloc ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="user_id" class="negrita">User_ID:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el User_ID" required="required" name="user_id" type="text" id="user_id" value="{{ $incidencies->user_id ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="categoria_id" class="negrita">Categoria_ID:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el Categoria_ID" required="required" name="categoria_id" type="text" id="categoria_id" value="{{ $incidencies->categoria_id ?? '' }}">
+                            </div>
+                        </div>
+
+                        @else
+                        <div class="mb-3">
+                            <label for="nombre" class="negrita">Nombre:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el nombre del producto" required="required" name="nombre" type="text" id="nombre">
+                            </div>
+                        </div>
+                        <div class="mb3">
+                            <label for="descripcion" class="negrita">Descripcion:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce la descripcion" required="required" name="descripcion" type="text" id="descripcion">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="data" class="negrita">Data:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce la data" required="required" name="data" type="date" id="data" value="{{ $incidencies->data ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="hora" class="negrita">Hora:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce la hora" required="required" name="hora" type="date" id="hora" value="{{ $incidencies->hora ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="estat" class="negrita">Estat:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el estat" required="required" name="estat" type="text" id="estat" value="{{ $incidencies->estat ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="lloc" class="negrita">Lloc:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el lloc" required="required" name="lloc" type="text" id="lloc" value="{{ $incidencies->lloc ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="user_id" class="negrita">User_ID:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el User_ID" required="required" name="user_id" type="text" id="user_id" value="{{ $incidencies->user_id ?? '' }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb3">
+                            <label for="categoria_id" class="negrita">Categoria_ID:</label>
+                            <div>
+                                <input class="form-control" placeholder="Introduce el Categoria_ID" required="required" name="categoria_id" type="text" id="categoria_id" value="{{ $incidencies->categoria_id ?? '' }}">
+                            </div>
+                        </div>
+
+                        @endif
+
+                        @if(session('rol_usuari') == 'profesor')
+                        <br>
+                        <button type="submit" class="btn btn-info">Guardar</button>
+                        <a href="{{ route('profesors/incidencies') }}" class="btn btn-warning">Cancelar</a>
+                        @else
+                        <button type="submit" class="btn btn-info">Guardar</button>
+                        @endif
+                        <br>
+                        <br>
                     </section>
                 </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eAEXL6b5qvyJcYUAfx12+COZlJSX3e6l5Ie6L4q6LdTN3kK1C3R8jDXsX5Y3WfKn" crossorigin="anonymous"></script>
-</body>
-
+    </body>
 </html>
