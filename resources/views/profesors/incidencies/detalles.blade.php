@@ -52,9 +52,11 @@
                         <p class="h6 mb-3">{{ $incidencies->lloc }}</p>
                     </div>
                 </div>
-                <a href="https://wa.me/+34{{ $telefonoReparador }}?text=Título: {{ $incidencies->titol }}%0ADescripción: {{ $incidencies->descripcio }}%0AFecha: {{ $incidencies->data }}%0AHora: {{ $incidencies->hora }}%0AEstado: {{ $incidencies->estat }}%0ALugar: {{ $incidencies->lloc }}" target="_blank" class="whatsapp-button">
-                    <img src="{{ asset('profesors/files/whatsapp-icon.png') }}" alt="WhatsApp Icon">
-                </a>
+                <div class="d-flex justify-content-center">
+                    <a href="https://wa.me/+34{{ $telefonoReparador }}?text=Título: {{ $incidencies->titol }}%0ADescripción: {{ $incidencies->descripcio }}%0AFecha: {{ $incidencies->data }}%0AHora: {{ $incidencies->hora }}%0AEstado: {{ $incidencies->estat }}%0ALugar: {{ $incidencies->lloc }}" target="_blank" class="btn btn-primary btn-lg">
+                        Compartir via WhatsApp al Reparador
+                    </a>
+                </div>
             </div>
         </div>
     </div>
