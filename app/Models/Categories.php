@@ -14,6 +14,10 @@ class Categories extends Model
     protected $fillable = [
         'id',
         'tipus',
-        'reparador_id',
+        'reparador_id', 
     ];
+    public function reparador()
+    {
+        return $this->belongsTo(Reparadors::class, 'reparador_id');
+    }
 }

@@ -20,7 +20,7 @@ Route::put('profesors/incidencies/store', 'App\Http\Controllers\IncidenciesContr
 Route::get('profesors/incidencies/show/{id}', 'App\Http\Controllers\IncidenciesController@show')->name('profesors/incidencies/detalles'); 
  
 /* Actualizar */
-Route::get('profesors/incidencies/actualitzar/{id}', 'App\Http\Controllers\IncidenciesController@actualizar')->name('profesors/incidencies/actualitzar');
+Route::get('profesors/incidencies/actualitzar/{id}', 'App\Http\Controllers\IncidenciesController@actualitzar')->name('profesors/incidencies/actualitzar');
 Route::put('profesors/incidencies/update/{id}', 'App\Http\Controllers\IncidenciesController@update')->name('profesors/incidencies/update');
  
 /* Eliminar */
@@ -28,6 +28,24 @@ Route::put('profesors/incidencies/eliminar/{id}', 'App\Http\Controllers\Incidenc
  
 /* Vista Principal */
 Route::get('profesors/incidencies', 'App\Http\Controllers\IncidenciesController@index')->name('profesors/incidencies');
+
+Route::get('profesors/reparadors/crear', 'App\Http\Controllers\ReparadorsController@crear')->name('/profesor/reparadors/crear');
+
+Route::put('profesors/reparadors/store', 'App\Http\Controllers\ReparadorsController@store')->name('profesors/reparadors/store');
+ 
+/* Leer */ 
+Route::get('profesors/reparadors/show/{id}', 'App\Http\Controllers\ReparadorsController@show')->name('profesors/reparadors/detalles'); 
+ 
+/* Actualizar */
+Route::get('profesors/reparadors/actualitzar/{id}', 'App\Http\Controllers\ReparadorsController@actualizar')->name('profesors/reparadors/actualitzar');
+Route::put('profesors/reparadors/update/{id}', 'App\Http\Controllers\ReparadorsController@update')->name('profesors/reparadors/update');
+ 
+/* Eliminar */
+Route::put('profesors/reparadors/eliminar/{id}', 'App\Http\Controllers\ReparadorsController@eliminar')->name('profesors/reparadors/eliminar'); 
+ 
+/* Vista Principal */
+Route::get('profesors/reparadors', 'App\Http\Controllers\ReparadorsController@index')->name('profesors/reparadors');
+
 
 Route::get('/', function () {
     return view('welcome');

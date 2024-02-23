@@ -28,16 +28,16 @@
                         @if (!empty($incidencies->id))
 
                         <div class="mb-3">
-                            <label for="nombre" class="negrita">Nombre:</label>
+                            <label for="titol" class="negrita">Titol:</label>
                             <div>
-                                <input class="form-control" placeholder="Introduce el nombre del producto" required="required" name="nombre" type="text" id="nombre">
+                                <input class="form-control" placeholder="Introduce el titol del producto" required="required" name="titol" type="text" id="titol">
                             </div>
                         </div>
 
                         <div class="mb3">
-                            <label for="descripcion" class="negrita">Descripcion:</label>
+                            <label for="descripcio" class="negrita">Descripcio:</label>
                             <div>
-                                <input class="form-control" placeholder="Introduce la descripcion" required="required" name="descripcion" type="text" id="descripcion">
+                                <input class="form-control" placeholder="Introduce la descripcio" required="required" name="descripcio" type="text" id="descripcio">
                             </div>
                         </div>
                         <br>
@@ -79,7 +79,7 @@
                         <div class="mb3">
                             <label for="categoria_id" class="negrita">Categoria_ID:</label>
                             <div>
-                                <input class="form-control" placeholder="Introduce el Categoria_ID" required="required" name="categoria_id" type="text" id="categoria_id" value="{{ $incidencies->categoria_id ?? '' }}">
+                                <input class="form-control" placeholder="Introduce el Categoria_ID" required="required" name="categoria_id" type="text" id="categoria_id" value="{{ $incidencies->categories_id ?? '' }}">
                             </div>
                         </div>
 

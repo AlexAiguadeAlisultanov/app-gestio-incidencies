@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Detalles del Producto</title>
+    <title>Detalles del Reparador</title>
 </head>
 
 <body>
@@ -23,38 +23,35 @@
                     @endif
 
                     <div class="mb-3">
-                        <p class="h5 fw-bold">Titol:</p>
-                        <p class="h6 mb-3">{{ $incidencies->titol }}</p>
+                        <p class="h5 fw-bold">Nombre:</p>
+                        <p class="h6 mb-3">{{ $reparadors->nombre }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <p class="h5 fw-bold">Descripcion:</p>
-                        <p class="h6 mb-3">{{ $incidencies->descripcio }}</p>
+                        <p class="h5 fw-bold">Apellidos:</p>
+                        <p class="h6 mb-3">{{ $reparadors->apellidos }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <p class="h5 fw-bold">Data:</p>
-                        <p class="h6 mb-3">{{ $incidencies->data }}</p>
+                        <p class="h5 fw-bold">Email:</p>
+                        <p class="h6 mb-3">{{ $reparadors->email }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <p class="h5 fw-bold">Hora:</p>
-                        <p class="h6 mb-3">{{ $incidencies->hora }}</p>
+                        <p class="h5 fw-bold">Telefono:</p>
+                        <p class="h6 mb-3">{{ $reparadors->telefono }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <p class="h5 fw-bold">Estat:</p>
-                        <p class="h6 mb-3">{{ $incidencies->estat }}</p>
+                        <p class="h5 fw-bold">Direccion:</p>
+                        <p class="h6 mb-3">{{ $reparadors->direccion }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <p class="h5 fw-bold">Lloc:</p>
-                        <p class="h6 mb-3">{{ $incidencies->lloc }}</p>
+                        <p class="h5 fw-bold">Ciudad</p>
+                        <p class="h6 mb-3">{{ $reparadors->ciudad }}</p>
                     </div>
                 </div>
-                <a href="https://wa.me/+34{{ $telefonoReparador }}?text=Título: {{ $incidencies->titol }}%0ADescripción: {{ $incidencies->descripcio }}%0AFecha: {{ $incidencies->data }}%0AHora: {{ $incidencies->hora }}%0AEstado: {{ $incidencies->estat }}%0ALugar: {{ $incidencies->lloc }}" target="_blank" class="whatsapp-button">
-                    <img src="{{ asset('profesors/files/whatsapp-icon.png') }}" alt="WhatsApp Icon">
-                </a>
             </div>
         </div>
     </div>

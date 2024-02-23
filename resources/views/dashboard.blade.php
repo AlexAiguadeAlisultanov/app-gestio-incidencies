@@ -6,8 +6,8 @@
     </x-slot>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-    @if(session('rol_usuari') == 'profesor')
+    @dump(session('rol_usuari'))
+    @if(session('rol_usuari') == 'manteniment')
     {{-- Mostrar menú para profesor --}}
     <div class="container mt-4">
         <div class="card">
@@ -22,13 +22,13 @@
                 </div>
             </div> -->
             <div class="card-body">
-                <h2>Bienvenido, Profesor</h2>
+                <h2>Bienvenido, usuario Mantenimiento</h2>
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="profesors/incidencies">Incidencias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reparaciones</a>
+                        <a class="nav-link" href="profesors/reparadors">Reparaciones</a>
                     </li>
                     <!-- Agrega más elementos del menú según sea necesario -->
                 </ul>
@@ -52,7 +52,18 @@
     {{-- Mostrar formulario de creación para otros roles --}}
     <div class="container mt-4">
         <div class="card">
-        <h2>Bienvenido, Trabajador</h2>
+            <div class="card-body">
+                <h2>Bienvenido, Professor</h2>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="profesors/incidencies">Incidencias</a>
+                    </li>
+                    <!-- Agrega más elementos del menú según sea necesario -->
+                </ul>
+            </div>
+        </div>
+    <div class="container mt-4">
+        <div class="card">
             <div class="card-body">
                 <h1 class="mt-4">Insertar una Incidencia</h1>
                 <form method="POST" action="{{ route('profesors/incidencies/store') }}" role="form" enctype="multipart/form-data">

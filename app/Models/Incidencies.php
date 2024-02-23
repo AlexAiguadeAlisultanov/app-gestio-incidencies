@@ -21,6 +21,9 @@ class Incidencies extends Model
         'user_id',
         'categoria_id',
     ];
-
+    public function category()
+    {
+        return $this->belongsTo(Categories::class, 'categories_id');
+    }
 
 }

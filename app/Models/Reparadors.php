@@ -9,6 +9,5 @@ class Reparadors extends Model
 {
     use HasFactory;
     protected $table = 'reparadors';
-    protected $fillable = ['nombre', 'apellidos', 'email', 'telefono', 'direccion', 'ciudad'];
-
+    protected $fillable = ['reparador_id','nombre', 'apellidos', 'email', 'telefono', 'direccion', 'ciudad'];
 }
