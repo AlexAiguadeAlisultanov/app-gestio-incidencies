@@ -141,7 +141,7 @@
 
                         @endif
 
-                        @if(session('rol_usuari') == 'profesor')
+                        @if(session('rol_usuari') == 'manteniment')
                         <br>
                         <button type="submit" class="btn btn-info">Guardar</button>
                         <a href="{{ route('profesors/incidencies') }}" class="btn btn-warning">Cancelar</a>
