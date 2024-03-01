@@ -76,7 +76,7 @@ class IncidenciesController extends Controller
     return view('profesors.incidencies.detalles', compact('incidencies', 'telefonoReparador'));
 }
 
-    public function actualizar($id)
+    public function actualitzar($id)
     {
         $incidencies = Incidencies::find($id);
         return view('profesors.incidencies.actualitzar', ['incidencies' => $incidencies]);
