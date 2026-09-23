@@ -1,7 +1,7 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('perfil.borrar.titulo') }}</h2>
-        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+        <h2 class="text-lg font-semibold tracking-tight text-tinta">{{ __('perfil.borrar.titulo') }}</h2>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-2">
             {{ __('perfil.borrar.entrada') }}
         </p>
     </header>
@@ -17,9 +17,9 @@
             @csrf
             @method('delete')
 
-            <h2 class="text-lg font-medium tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('perfil.borrar.confirmar_titulo') }}</h2>
+            <h2 class="text-lg font-semibold tracking-tight text-tinta">{{ __('perfil.borrar.confirmar_titulo') }}</h2>
 
-            <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+            <p class="mt-2 text-sm leading-relaxed text-tinta-2">
                 {{ __('perfil.borrar.confirmar_texto') }}
             </p>
 

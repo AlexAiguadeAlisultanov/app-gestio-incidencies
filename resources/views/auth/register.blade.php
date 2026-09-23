@@ -2,8 +2,8 @@
     <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('acceso.registro.titulo')]) }}</x-slot>
 
     <header class="mb-8">
-        <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('acceso.registro.titulo') }}</h1>
-        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+        <h1 class="text-xl font-semibold tracking-tight text-tinta">{{ __('acceso.registro.titulo') }}</h1>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-2">
             {{ __('acceso.registro.entrada') }}
         </p>
     </header>
@@ -37,7 +37,7 @@
         <div>
             <x-input-label for="password" :value="__('acceso.campos.contrasena')" />
             <x-text-input id="password" class="mt-2" type="password" name="password" required autocomplete="new-password" />
-            <p class="mt-2 text-xs text-tinta-500 dark:text-tinta-400">{{ __('acceso.registro.contrasena_nota') }}</p>
+            <p class="mt-2 text-xs text-tinta-3">{{ __('acceso.registro.contrasena_nota') }}</p>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -50,8 +50,8 @@
         <x-primary-button class="w-full">{{ __('acceso.registro.enviar') }}</x-primary-button>
     </form>
 
-    <p class="mt-8 border-t border-tinta-200 pt-6 text-center text-sm text-tinta-600 dark:border-tinta-800 dark:text-tinta-400">
+    <p class="mt-8 border-t border-linia-suau pt-6 text-center text-sm text-tinta-2">
         {{ __('acceso.registro.con_cuenta') }}
-        <a href="{{ route('login') }}" class="rounded-control font-medium text-acent-600 hover:text-acent-700 dark:text-acent-400 dark:hover:text-acent-300">{{ __('acceso.registro.entrar') }}</a>
+        <a href="{{ route('login') }}" class="rounded-control font-medium text-ambre hover:text-ambre-clar">{{ __('acceso.registro.entrar') }}</a>
     </p>
 </x-guest-layout>

@@ -3,19 +3,26 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
+        <meta name="color-scheme" content="dark">
+        <meta name="theme-color" content="#101012">
 
         <title>{{ __('app.titulo', ['pagina' => __('app.error404.titulo_pagina')]) }}</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap">
 
         @vite(['resources/css/app.css'])
     </head>
     <body class="min-h-full font-sans">
-        <div class="flex min-h-screen flex-col items-center justify-center gap-6 px-4 text-center">
-            <x-application-logo class="h-10 w-10 text-acent-600 dark:text-acent-400" />
+        <div class="fons-taques" aria-hidden="true"></div>
+
+        <div class="ample flex min-h-screen flex-col items-center justify-center gap-6 py-12 text-center">
+            <span class="num" aria-hidden="true">404</span>
 
             <div>
-                <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('app.error404.titulo') }}</h1>
-                <p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+                <h1 class="titular titular-m">{{ __('app.error404.titulo') }}</h1>
+                <p class="mx-auto mt-4 max-w-lectura text-sm leading-relaxed text-tinta-2">
                     {{ __('app.error404.texto') }}
                 </p>
             </div>

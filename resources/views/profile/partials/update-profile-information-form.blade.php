@@ -1,7 +1,7 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('perfil.datos.titulo') }}</h2>
-        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+        <h2 class="text-lg font-semibold tracking-tight text-tinta">{{ __('perfil.datos.titulo') }}</h2>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-2">
             {{ __('perfil.datos.entrada') }}
         </p>
     </header>
@@ -26,16 +26,16 @@
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <p class="mt-3 text-sm text-tinta-600 dark:text-tinta-400">
+                <p class="mt-3 text-sm text-tinta-2">
                     {{ __('perfil.datos.sin_verificar') }}
 
-                    <button form="send-verification" class="rounded-control font-medium text-acent-600 hover:text-acent-700 dark:text-acent-400 dark:hover:text-acent-300">
+                    <button form="send-verification" class="rounded-control font-medium text-ambre hover:text-ambre-clar">
                         {{ __('perfil.datos.reenviar') }}
                     </button>
                 </p>
 
                 @if (session('status') === 'verification-link-sent')
-                    <p class="mt-2 text-sm font-medium text-estat-resolt dark:text-estat-resolt-clar">
+                    <p class="mt-2 text-sm font-medium text-estat-resolt">
                         {{ __('perfil.datos.enviado') }}
                     </p>
                 @endif
@@ -50,7 +50,7 @@
                    x-show="visible"
                    x-transition
                    x-init="setTimeout(() => visible = false, 3000)"
-                   class="text-sm text-tinta-600 dark:text-tinta-400">{{ __('perfil.datos.guardado') }}</p>
+                   class="text-sm text-tinta-2">{{ __('perfil.datos.guardado') }}</p>
             @endif
         </div>
     </form>

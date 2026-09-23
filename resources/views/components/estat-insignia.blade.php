@@ -19,24 +19,25 @@
         $text = $estat ?: __('vocabulario.estados.otro');
     }
 
+    // Pendiente se lleva el ámbar de la aplicación: es lo que hay que atender.
     $estils = [
-        'pendent' => 'bg-estat-pendent-fons text-estat-pendent dark:bg-estat-pendent/15 dark:text-estat-pendent-clar',
-        'curs' => 'bg-estat-curs-fons text-estat-curs dark:bg-estat-curs/20 dark:text-estat-curs-clar',
-        'resolt' => 'bg-estat-resolt-fons text-estat-resolt dark:bg-estat-resolt/20 dark:text-estat-resolt-clar',
-        'neutre' => 'bg-tinta-100 text-tinta-600 dark:bg-tinta-800 dark:text-tinta-300',
+        'pendent' => 'border-estat-pendent/35 bg-estat-pendent-fons text-estat-pendent',
+        'curs' => 'border-estat-curs/30 bg-estat-curs-fons text-estat-curs',
+        'resolt' => 'border-estat-resolt/30 bg-estat-resolt-fons text-estat-resolt',
+        'neutre' => 'border-linia bg-fons-3 text-tinta-2',
     ];
 
     $punts = [
-        'pendent' => 'bg-estat-pendent dark:bg-estat-pendent-clar',
-        'curs' => 'bg-estat-curs dark:bg-estat-curs-clar',
-        'resolt' => 'bg-estat-resolt dark:bg-estat-resolt-clar',
-        'neutre' => 'bg-tinta-400',
+        'pendent' => 'bg-estat-pendent',
+        'curs' => 'bg-estat-curs',
+        'resolt' => 'bg-estat-resolt',
+        'neutre' => 'bg-tinta-3',
     ];
 
     $mida = $gran ? 'px-4 py-1.5 text-sm' : 'px-3 py-1 text-xs';
 @endphp
 
-<span {{ $attributes->merge(['class' => 'xip '.$estils[$to].' '.$mida]) }}>
-    <span class="h-2 w-2 shrink-0 rounded-full {{ $punts[$to] }}"></span>
+<span {{ $attributes->merge(['class' => 'xip whitespace-nowrap border '.$estils[$to].' '.$mida]) }}>
+    <span class="h-1.5 w-1.5 shrink-0 rounded-full {{ $punts[$to] }}"></span>
     {{ $text }}
 </span>

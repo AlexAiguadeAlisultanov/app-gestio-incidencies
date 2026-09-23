@@ -1,7 +1,7 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('perfil.contrasena.titulo') }}</h2>
-        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+        <h2 class="text-lg font-semibold tracking-tight text-tinta">{{ __('perfil.contrasena.titulo') }}</h2>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-2">
             {{ __('perfil.contrasena.entrada') }}
         </p>
     </header>
@@ -36,7 +36,7 @@
                    x-show="visible"
                    x-transition
                    x-init="setTimeout(() => visible = false, 3000)"
-                   class="text-sm text-tinta-600 dark:text-tinta-400">{{ __('perfil.contrasena.guardada') }}</p>
+                   class="text-sm text-tinta-2">{{ __('perfil.contrasena.guardada') }}</p>
             @endif
         </div>
     </form>

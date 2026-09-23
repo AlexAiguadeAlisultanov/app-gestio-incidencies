@@ -8,68 +8,76 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
-    darkMode: 'media',
-
     theme: {
         extend: {
             fontFamily: {
                 sans: [
+                    'Inter',
                     '"Segoe UI Variable Text"',
-                    '"Segoe UI"',
                     '-apple-system',
                     'BlinkMacSystemFont',
                     '"SF Pro Text"',
+                    '"Segoe UI"',
                     'system-ui',
                     'Roboto',
-                    '"Helvetica Neue"',
                     'sans-serif',
                 ],
             },
 
+            // Nada baja de 14 px. La escala sube con razon 1,2 a partir de ahi.
+            fontSize: {
+                xs: ['0.875rem', { lineHeight: '1.45' }],
+                sm: ['0.9375rem', { lineHeight: '1.5' }],
+                base: ['1rem', { lineHeight: '1.6' }],
+                lg: ['1.125rem', { lineHeight: '1.4' }],
+                xl: ['1.375rem', { lineHeight: '1.3' }],
+                '2xl': ['1.75rem', { lineHeight: '1.2' }],
+                '3xl': ['2.25rem', { lineHeight: '1.1' }],
+            },
+
             colors: {
-                // Neutres: mai blanc ni negre purs
+                // Grafito. Ni negro puro ni el mismo negro del portafolio: este tira a
+                // calido, que es lo que pide el ambar encima.
+                fons: {
+                    DEFAULT: '#101012',
+                    2: '#16161A',
+                    3: '#1C1C21',
+                    4: '#232329',
+                },
+                linia: {
+                    DEFAULT: '#2B2B32',
+                    suau: '#212127',
+                },
                 tinta: {
-                    50: '#FAFAF9',
-                    100: '#F3F3F2',
-                    200: '#E6E6E4',
-                    300: '#D2D2D0',
-                    400: '#A2A2A0',
-                    500: '#79797A',
-                    600: '#57575A',
-                    700: '#3B3B3E',
-                    800: '#232326',
-                    900: '#1D1D1F',
-                    950: '#121214',
+                    DEFAULT: '#F4F4F6',
+                    2: '#A6A6AE',
+                    3: '#84848E',
                 },
-                // Acent unic del projecte: blau pissarra
-                acent: {
-                    50: '#F1F6FA',
-                    100: '#DFEAF3',
-                    200: '#BFD4E7',
-                    300: '#95B6D3',
-                    400: '#6493BE',
-                    500: '#3F76A6',
-                    600: '#2F6090',
-                    700: '#284E73',
-                    800: '#24415D',
-                    900: '#22384E',
+
+                // Acento unico: ambar. Lenguaje de aviso y de mantenimiento.
+                ambre: {
+                    DEFAULT: '#E8A33D',
+                    clar: '#F2C179',
+                    fosc: '#B87A1E',
+                    fons: '#2C1F0B',
                 },
+                'sobre-ambre': '#1A1205',
+
+                // Los tres estados. Pendiente se queda con el acento a proposito: es lo
+                // que hay que atender. Los otros dos van desaturados para no competir.
                 estat: {
-                    pendent: '#8F6200',
-                    'pendent-fons': '#FAF0DC',
-                    'pendent-clar': '#E0AC57',
-                    curs: '#2F6090',
-                    'curs-fons': '#E6EEF6',
-                    'curs-clar': '#86AED0',
-                    resolt: '#2C6B50',
-                    'resolt-fons': '#E5EFE9',
-                    'resolt-clar': '#73B092',
+                    pendent: '#E8A33D',
+                    'pendent-fons': '#2C1F0B',
+                    curs: '#8FB0CC',
+                    'curs-fons': '#182129',
+                    resolt: '#7BB894',
+                    'resolt-fons': '#16241D',
                 },
+
                 perill: {
-                    600: '#9D3B32',
-                    500: '#B4483E',
-                    fons: '#F8EAE8',
-                    clar: '#E2897F',
+                    DEFAULT: '#E2867C',
+                    fosc: '#8E3931',
+                    fons: '#2A1512',
                 },
             },
 
@@ -80,12 +88,16 @@ export default {
             },
 
             boxShadow: {
-                suau: '0 1px 2px rgba(18, 18, 20, 0.04), 0 8px 24px -16px rgba(18, 18, 20, 0.18)',
-                elevat: '0 2px 4px rgba(18, 18, 20, 0.05), 0 16px 40px -20px rgba(18, 18, 20, 0.28)',
+                suau: '0 1px 2px rgba(0, 0, 0, 0.35)',
+                elevat: '0 2px 6px rgba(0, 0, 0, 0.4), 0 24px 48px -24px rgba(0, 0, 0, 0.7)',
             },
 
             transitionTimingFunction: {
                 suau: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
+            },
+
+            maxWidth: {
+                lectura: '68ch',
             },
         },
     },

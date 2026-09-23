@@ -6,17 +6,14 @@
 <x-app-layout>
     <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('incidencias.titulo_nueva')]) }}</x-slot>
 
-    <x-slot name="header">
-        <a href="{{ url('/profesors/incidencies') }}" class="inline-flex items-center gap-2 rounded-control text-sm font-medium text-tinta-600 hover:text-tinta-900 dark:text-tinta-400 dark:hover:text-tinta-100">
-            <x-icona nom="enrere" class="h-4 w-4" />
-            {{ __('incidencias.ficha.volver') }}
-        </a>
+    <x-capcalera-pagina
+        numero="02"
+        :titol="__('incidencias.titulo_nueva')"
+        :entrada="__('incidencias.nueva.entrada')"
+        :enrere="url('/profesors/incidencies')"
+        :enrere-text="__('incidencias.ficha.volver')" />
 
-        <h1 class="mt-4 text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('incidencias.titulo_nueva') }}</h1>
-        <p class="mt-2 text-sm text-tinta-600 dark:text-tinta-400">{{ __('incidencias.nueva.entrada') }}</p>
-    </x-slot>
-
-    <div class="mx-auto max-w-2xl">
+    <div class="entra mt-8 max-w-3xl" style="--r: 60ms">
         <form method="POST" action="{{ route('profesors/incidencies/store') }}" class="targeta p-6 sm:p-8">
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

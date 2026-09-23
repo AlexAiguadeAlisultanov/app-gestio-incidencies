@@ -2,8 +2,8 @@
     <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('acceso.confirmar.titulo_pagina')]) }}</x-slot>
 
     <header class="mb-8">
-        <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('acceso.confirmar.titulo') }}</h1>
-        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+        <h1 class="text-xl font-semibold tracking-tight text-tinta">{{ __('acceso.confirmar.titulo') }}</h1>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-2">
             {{ __('acceso.confirmar.entrada') }}
         </p>
     </header>

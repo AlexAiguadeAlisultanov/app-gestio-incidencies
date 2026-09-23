@@ -25,7 +25,14 @@
     $propietari = \App\Models\User::find($fitxa->user_id ?? auth()->id());
     $propietariId = old('user_id', $fitxa->user_id ?? auth()->id());
 
+    // En un alta nueva el día y la hora vienen puestos con el momento actual: casi siempre
+    // se da de alta la avería justo cuando se ve, y así queda un campo menos que rellenar.
     $hora = old('hora', \Illuminate\Support\Str::substr((string) ($fitxa->hora ?? ''), 0, 5));
+
+    if ($hora === '' && ! $edicio) {
+        $hora = now()->format('H:i');
+    }
+
     $data = old('data', $fitxa->data ?? now()->toDateString());
 @endphp
 
@@ -62,12 +69,14 @@
                     <option value="{{ $id }}" @selected((string) $categoriaActual === (string) $id)>{{ $etiquetesCategoria[$tipus] ?? $tipus }}</option>
                 @endforeach
             </x-select-input>
-            <p class="mt-2 text-xs text-tinta-500 dark:text-tinta-400">{{ __('incidencias.formulario.categoria_pista') }}</p>
+            <p class="mt-2 text-xs text-tinta-3">{{ __('incidencias.formulario.categoria_pista') }}</p>
             <x-input-error :messages="$errors->get('categoria_id')" class="mt-2" />
         </div>
     </div>
 
-    <div class="grid gap-6 sm:grid-cols-3">
+    {{-- Día, hora y estado se reparten según el sitio que haya: el campo de fecha necesita
+         unos 150 px para que el navegador no recorte el día. --}}
+    <div class="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr))]">
         <div>
             <x-input-label for="data" :value="__('incidencias.formulario.dia')" />
             <x-text-input id="data" name="data" type="date" class="mt-2" required :value="$data" />
@@ -94,12 +103,12 @@
     {{-- Quién la da de alta viaja en el formulario, pero no se escribe a mano --}}
     <input type="hidden" name="user_id" value="{{ $propietariId }}">
 
-    <p class="flex items-center gap-2 text-xs text-tinta-500 dark:text-tinta-400">
+    <p class="flex items-center gap-2 text-xs text-tinta-3">
         <x-icona nom="persona" class="h-4 w-4" />
         {{ __('incidencias.formulario.a_nombre_de', ['nombre' => $propietari?->name ?? __('incidencias.formulario.usuario', ['id' => $propietariId])]) }}
     </p>
 
-    <div class="flex flex-wrap items-center gap-3 border-t border-tinta-200 pt-6 dark:border-tinta-800">
+    <div class="flex flex-wrap items-center gap-3 border-t border-linia-suau pt-6">
         <x-primary-button>
             <x-icona nom="{{ $edicio ? 'editar' : 'afegir' }}" class="h-4 w-4" />
             {{ $edicio ? __('app.acciones.guardar_cambios') : __('incidencias.formulario.enviar') }}

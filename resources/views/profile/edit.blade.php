@@ -8,28 +8,26 @@
 <x-app-layout>
     <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('perfil.titulo')]) }}</x-slot>
 
-    <x-slot name="header">
-        <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('perfil.titulo') }}</h1>
-        <p class="mt-2 text-sm text-tinta-600 dark:text-tinta-400">{{ __('perfil.entrada') }}</p>
+    <x-capcalera-pagina
+        numero="04"
+        :titol="__('perfil.titulo')"
+        :entrada="__('perfil.entrada')">
 
         @if ($rol)
-            <p class="mt-4 flex items-center gap-2 text-sm text-tinta-600 dark:text-tinta-400">
-                {{ __('perfil.papel') }}
-                <span class="xip bg-acent-50 text-acent-700 dark:bg-acent-900/40 dark:text-acent-200">{{ $rol }}</span>
-            </p>
+            <span class="xip border border-linia bg-fons-3 text-tinta-2">{{ __('perfil.papel') }} {{ $rol }}</span>
         @endif
-    </x-slot>
+    </x-capcalera-pagina>
 
-    <div class="mx-auto max-w-2xl space-y-8">
-        <div class="targeta p-6 sm:p-8">
+    <div class="mt-8 grid max-w-6xl gap-6 lg:grid-cols-2">
+        <div class="entra targeta p-6 sm:p-8" style="--r: 60ms">
             @include('profile.partials.update-profile-information-form')
         </div>
 
-        <div class="targeta p-6 sm:p-8">
+        <div class="entra targeta p-6 sm:p-8" style="--r: 120ms">
             @include('profile.partials.update-password-form')
         </div>
 
-        <div class="targeta border-perill-600/20 p-6 sm:p-8 dark:border-perill-600/30">
+        <div class="entra targeta border-perill/25 p-6 sm:p-8 lg:col-span-2" style="--r: 180ms">
             @include('profile.partials.delete-user-form')
         </div>
     </div>

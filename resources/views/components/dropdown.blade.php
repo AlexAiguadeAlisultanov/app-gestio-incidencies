@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white dark:bg-tinta-900'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-fons-2'])
 
 @php
     $alignmentClasses = match ($align) {
@@ -8,8 +8,8 @@
     };
 
     $width = match ($width) {
-        '48' => 'w-48',
-        default => 'w-48',
+        '48' => 'w-56',
+        default => 'w-56',
     };
 @endphp
 
@@ -28,7 +28,7 @@
             x-transition:leave-end="opacity-0 scale-95"
             class="absolute z-50 mt-2 {{ $width }} rounded-targeta shadow-elevat {{ $alignmentClasses }}"
             @click="open = false">
-        <div class="overflow-hidden rounded-targeta border border-tinta-200 dark:border-tinta-800 {{ $contentClasses }}">
+        <div class="overflow-hidden rounded-targeta border border-linia {{ $contentClasses }}">
             {{ $content }}
         </div>
     </div>

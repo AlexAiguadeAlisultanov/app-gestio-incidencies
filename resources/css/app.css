@@ -2,18 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Grafito y ambar. Un solo tema: la aplicacion se ve igual entre y a quien entre, y el
+   ambar solo aparece donde hay algo que atender. */
+
+:root {
+    color-scheme: dark;
+
+    /* Margen lateral de toda la aplicacion. Crece con la ventana en vez de encerrar el
+       contenido en una columna estrecha. Lo que no se estira es el texto: cada bloque
+       conserva su medida y el hueco que sobra se reparte en columnas. */
+    --marc: clamp(1.25rem, 3.2vw, 4.5rem);
+    --barra: 56px;
+    --degradat: linear-gradient(180deg, #6C665C 0%, #EAE5DB 100%);
+}
+
 @layer base {
     html {
         -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+        scroll-padding-top: calc(var(--barra) + 16px);
     }
 
     body {
-        @apply bg-tinta-50 text-tinta-900 antialiased dark:bg-tinta-950 dark:text-tinta-100;
+        @apply bg-fons text-tinta antialiased;
+        font-synthesis-weight: none;
+        overflow-x: clip;
     }
 
-    /* Un sol estil de focus a tota l'aplicacio, sempre visible amb teclat */
+    * {
+        min-width: 0;
+    }
+
+    ::selection {
+        @apply bg-ambre-fons text-ambre-clar;
+    }
+
+    /* Un solo estilo de foco en toda la aplicacion, siempre visible con teclado */
     :focus-visible {
-        @apply outline-none ring-2 ring-acent-500 ring-offset-2 ring-offset-tinta-50 dark:ring-acent-300 dark:ring-offset-tinta-950;
+        @apply outline-none ring-2 ring-ambre ring-offset-2 ring-offset-fons;
     }
 
     [x-cloak] {
@@ -22,48 +48,147 @@
 }
 
 @layer components {
+    /* Ancho de pagina */
+    .ample {
+        width: 100%;
+        max-width: 1920px;
+        margin-inline: auto;
+        padding-inline: var(--marc);
+    }
+
+    /* Titular recortado sobre un degradado vertical. Si el navegador no sabe recortarlo,
+       queda el color solido del fallback. */
+    .titular {
+        @apply font-extrabold uppercase tracking-[-0.03em];
+        line-height: 0.95;
+        /* Con el interlineado tan pegado la caja se queda por debajo de las tildes de las
+           mayusculas, y sin este respiro la tilde no se pinta. */
+        padding-block-start: 0.1em;
+        color: #EAE5DB;
+        background: var(--degradat);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-wrap: balance;
+    }
+
+    .titular-l {
+        font-size: clamp(1.75rem, 3.6vw, 3.25rem);
+    }
+
+    .titular-m {
+        font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    }
+
+    /* Numeracion de seccion: en contorno, al lado del nombre */
+    .num {
+        @apply font-extrabold tracking-[-0.04em] text-transparent;
+        font-size: clamp(2rem, 3.4vw, 3rem);
+        line-height: 0.8;
+        -webkit-text-stroke: 1px #3B3B44;
+    }
+
+    /* Los recuentos del panel. Son el titular de la pantalla. */
+    .xifra {
+        @apply font-extrabold tabular-nums tracking-[-0.04em];
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        line-height: 0.85;
+        color: #EAE5DB;
+        background: var(--degradat);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .xifra-ambre {
+        color: theme('colors.ambre.DEFAULT');
+        background: none;
+        -webkit-text-fill-color: theme('colors.ambre.DEFAULT');
+    }
+
     .targeta {
-        @apply rounded-targeta border border-tinta-200 bg-white shadow-suau dark:border-tinta-800 dark:bg-tinta-900;
+        @apply rounded-targeta border border-linia bg-fons-2;
     }
 
     .boto {
-        @apply inline-flex items-center justify-center gap-2 rounded-control px-4 py-2 text-sm font-medium transition duration-200 ease-suau disabled:opacity-40;
+        @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-control px-4 text-sm font-medium transition duration-200 ease-suau disabled:opacity-40;
     }
 
     .boto-primari {
-        @apply boto bg-acent-600 text-white hover:bg-acent-700 active:bg-acent-800 dark:bg-acent-500 dark:hover:bg-acent-400 dark:active:bg-acent-300 dark:active:text-tinta-950;
+        @apply boto bg-ambre text-sobre-ambre hover:bg-ambre-clar active:bg-ambre-fosc;
     }
 
     .boto-secundari {
-        @apply boto border border-tinta-300 bg-white text-tinta-700 hover:bg-tinta-100 dark:border-tinta-700 dark:bg-tinta-900 dark:text-tinta-200 dark:hover:bg-tinta-800;
+        @apply boto border border-linia bg-fons-3 text-tinta hover:border-ambre/40 hover:bg-fons-4;
     }
 
     .boto-discret {
-        @apply boto text-tinta-600 hover:bg-tinta-100 hover:text-tinta-900 dark:text-tinta-300 dark:hover:bg-tinta-800 dark:hover:text-tinta-50;
+        @apply boto text-tinta-2 hover:bg-fons-3 hover:text-tinta;
     }
 
     .boto-perill {
-        @apply boto bg-perill-600 text-white hover:bg-perill-500 dark:bg-perill-500 dark:hover:bg-perill-600;
+        @apply boto bg-perill-fosc text-tinta hover:bg-perill hover:text-sobre-ambre;
     }
 
     .camp {
-        @apply block w-full rounded-control border-tinta-300 bg-white text-sm text-tinta-900 placeholder-tinta-400 shadow-sm transition duration-200 ease-suau focus:border-acent-500 focus:ring-acent-500 dark:border-tinta-700 dark:bg-tinta-900 dark:text-tinta-100 dark:placeholder-tinta-500 dark:focus:border-acent-400 dark:focus:ring-acent-400;
+        @apply block min-h-[44px] w-full rounded-control border-linia bg-fons-3 text-sm text-tinta placeholder-tinta-3 transition duration-200 ease-suau focus:border-ambre focus:ring-ambre;
     }
 
     .etiqueta {
-        @apply block text-sm font-medium text-tinta-700 dark:text-tinta-300;
+        @apply block text-xs font-medium uppercase tracking-[0.06em] text-tinta-2;
     }
 
     .xip {
         @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium;
     }
+
+    /* Rotulo pequeno de seccion, en versales */
+    .rotul {
+        @apply text-xs font-medium uppercase tracking-[0.14em] text-tinta-3;
+    }
+}
+
+@layer utilities {
+    /* Entrada escalonada. El retardo lo pone cada elemento con --r. */
+    .entra {
+        animation: entra 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+        animation-delay: var(--r, 0ms);
+    }
+}
+
+@keyframes entra {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Fondo: dos manchas muy tenues, fijas. Ni canvas ni WebGL, solo un degradado radial que
+   da algo de profundidad al grafito sin pesar nada. */
+.fons-taques {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    background:
+        radial-gradient(60vw 55vh at 8% -10%, rgba(232, 163, 61, 0.10), transparent 70%),
+        radial-gradient(55vw 50vh at 95% 12%, rgba(143, 176, 204, 0.07), transparent 72%);
 }
 
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
     *,
     ::before,
     ::after {
         animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;

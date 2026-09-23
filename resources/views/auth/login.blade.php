@@ -2,8 +2,8 @@
     <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('acceso.entrar.titulo')]) }}</x-slot>
 
     <header class="mb-8">
-        <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('acceso.entrar.titulo') }}</h1>
-        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+        <h1 class="text-xl font-semibold tracking-tight text-tinta">{{ __('acceso.entrar.titulo') }}</h1>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-2">
             {{ __('acceso.entrar.entrada') }}
         </p>
     </header>
@@ -24,7 +24,7 @@
                 <x-input-label for="password" :value="__('acceso.campos.contrasena')" />
 
                 @if (Route::has('password.request'))
-                    <a class="rounded-control text-xs font-medium text-acent-600 hover:text-acent-700 dark:text-acent-400 dark:hover:text-acent-300" href="{{ route('password.request') }}">
+                    <a class="rounded-control text-xs font-medium text-ambre hover:text-ambre-clar" href="{{ route('password.request') }}">
                         {{ __('acceso.entrar.olvidada') }}
                     </a>
                 @endif
@@ -34,19 +34,19 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <label for="remember_me" class="flex items-center gap-3">
+        <label for="remember_me" class="flex min-h-[44px] items-center gap-3">
             <input id="remember_me" type="checkbox" name="remember"
-                   class="rounded border-tinta-300 text-acent-600 shadow-sm focus:ring-acent-500 dark:border-tinta-600 dark:bg-tinta-800 dark:focus:ring-acent-400">
-            <span class="text-sm text-tinta-600 dark:text-tinta-400">{{ __('acceso.entrar.recordarme') }}</span>
+                   class="h-5 w-5 rounded border-linia bg-fons-3 text-ambre focus:ring-ambre">
+            <span class="text-sm text-tinta-2">{{ __('acceso.entrar.recordarme') }}</span>
         </label>
 
         <x-primary-button class="w-full">{{ __('acceso.entrar.enviar') }}</x-primary-button>
     </form>
 
     @if (Route::has('register'))
-        <p class="mt-8 border-t border-tinta-200 pt-6 text-center text-sm text-tinta-600 dark:border-tinta-800 dark:text-tinta-400">
+        <p class="mt-8 border-t border-linia-suau pt-6 text-center text-sm text-tinta-2">
             {{ __('acceso.entrar.sin_cuenta') }}
-            <a href="{{ route('register') }}" class="rounded-control font-medium text-acent-600 hover:text-acent-700 dark:text-acent-400 dark:hover:text-acent-300">{{ __('acceso.entrar.crearla') }}</a>
+            <a href="{{ route('register') }}" class="rounded-control font-medium text-ambre hover:text-ambre-clar">{{ __('acceso.entrar.crearla') }}</a>
         </p>
     @endif
 </x-guest-layout>

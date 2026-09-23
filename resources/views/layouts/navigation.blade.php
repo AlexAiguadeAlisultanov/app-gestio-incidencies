@@ -8,75 +8,88 @@
     ];
 @endphp
 
-<nav x-data="{ obert: false }" class="border-b border-tinta-200 bg-white dark:border-tinta-800 dark:bg-tinta-900">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div class="flex h-16 justify-between">
-            <div class="flex">
-                <a href="{{ url('/dashboard') }}" class="flex shrink-0 items-center gap-3 rounded-control pe-2">
-                    <x-application-logo class="h-8 w-8 text-acent-600 dark:text-acent-400" />
-                    <span class="hidden text-sm font-medium tracking-tight text-tinta-900 sm:block dark:text-tinta-50">{{ __('app.marca') }}</span>
-                </a>
+<nav x-data="{ obert: false }" class="sticky top-0 z-40 border-b border-linia/70 bg-fons/85 backdrop-blur-xl">
+    <div class="ample flex h-14 items-center justify-between gap-4">
+        <div class="flex min-w-0 items-center gap-8">
+            <a href="{{ url('/dashboard') }}" class="flex min-h-[44px] shrink-0 items-center gap-2.5 rounded-control pe-1">
+                <x-application-logo class="h-7 w-7 text-ambre" />
+                <span class="hidden text-sm font-semibold tracking-tight text-tinta sm:block">{{ __('app.marca') }}</span>
+            </a>
 
-                <div class="hidden sm:-my-px sm:ms-10 sm:flex sm:gap-8">
-                    @foreach ($enlaces as $enlace)
+            <ul class="hidden items-center gap-1 lg:flex">
+                @foreach ($enlaces as $enlace)
+                    <li>
                         <x-nav-link :href="$enlace['ruta']" :active="$enlace['actiu']">
                             <x-icona :nom="$enlace['icona']" class="h-4 w-4" />
                             {{ $enlace['text'] }}
                         </x-nav-link>
-                    @endforeach
-                </div>
-            </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
 
-            <div class="flex items-center gap-3">
-                <x-selector-idioma />
+        <div class="flex items-center gap-2">
+            <x-selector-idioma />
 
-                <div class="hidden sm:flex sm:items-center">
-                    <x-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button type="button" class="boto-discret" aria-haspopup="true">
-                                <span class="max-w-[12rem] truncate">{{ $usuari?->name }}</span>
-                                <x-icona nom="avall" class="h-4 w-4" />
-                            </button>
-                        </x-slot>
+            <div class="hidden sm:flex sm:items-center">
+                <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button type="button" class="boto-discret px-3" aria-haspopup="true">
+                            <span class="max-w-[10rem] truncate">{{ $usuari?->name }}</span>
+                            <x-icona nom="avall" class="h-4 w-4" />
+                        </button>
+                    </x-slot>
 
-                        <x-slot name="content">
-                            <div class="border-b border-tinta-200 px-4 py-3 dark:border-tinta-800">
-                                <p class="truncate text-sm font-medium text-tinta-900 dark:text-tinta-50">{{ $usuari?->name }}</p>
-                                <p class="truncate text-xs text-tinta-500 dark:text-tinta-400">{{ $usuari?->email }}</p>
-                            </div>
+                    <x-slot name="content">
+                        <div class="border-b border-linia px-4 py-3">
+                            <p class="truncate text-sm font-medium text-tinta">{{ $usuari?->name }}</p>
+                            <p class="truncate text-xs text-tinta-3">{{ $usuari?->email }}</p>
+                        </div>
 
-                            <x-dropdown-link :href="route('profile.edit')">
-                                <x-icona nom="perfil" class="h-4 w-4 text-tinta-400" />
-                                {{ __('app.nav.perfil') }}
+                        <x-dropdown-link :href="route('profile.edit')">
+                            <x-icona nom="perfil" class="h-4 w-4 text-tinta-3" />
+                            {{ __('app.nav.perfil') }}
+                        </x-dropdown-link>
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                <x-icona nom="sortir" class="h-4 w-4 text-tinta-3" />
+                                {{ __('app.nav.salir') }}
                             </x-dropdown-link>
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                    <x-icona nom="sortir" class="h-4 w-4 text-tinta-400" />
-                                    {{ __('app.nav.salir') }}
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-dropdown>
-                </div>
-
-                <div class="-me-2 flex items-center sm:hidden">
-                    <button type="button" @click="obert = ! obert" :aria-expanded="obert" aria-controls="menu-movil"
-                            class="boto-discret p-2">
-                        <span class="sr-only">{{ __('app.nav.abrir_menu') }}</span>
-                        <x-icona nom="menu" x-show="! obert" class="h-6 w-6" />
-                        <x-icona nom="tancar" x-show="obert" x-cloak class="h-6 w-6" />
-                    </button>
-                </div>
+                        </form>
+                    </x-slot>
+                </x-dropdown>
             </div>
+
+            <button type="button" @click="obert = ! obert" :aria-expanded="obert" aria-controls="menu-movil"
+                    class="boto-discret px-2 sm:hidden">
+                <span class="sr-only">{{ __('app.nav.abrir_menu') }}</span>
+                <x-icona nom="menu" x-show="! obert" class="h-5 w-5" />
+                <x-icona nom="tancar" x-show="obert" x-cloak class="h-5 w-5" />
+            </button>
         </div>
     </div>
 
-    <div id="menu-movil" x-show="obert" x-cloak class="border-t border-tinta-200 sm:hidden dark:border-tinta-800">
-        <div class="space-y-1 py-2">
+    {{-- Entre movil y escritorio la navegacion baja a una fila propia que se arrastra de
+         lado, para no perderla ni meter un desplegable de mas. --}}
+    <div class="hidden border-t border-linia/50 sm:block lg:hidden">
+        <ul class="ample flex items-center gap-1 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            @foreach ($enlaces as $enlace)
+                <li>
+                    <x-nav-link :href="$enlace['ruta']" :active="$enlace['actiu']">
+                        <x-icona :nom="$enlace['icona']" class="h-4 w-4" />
+                        {{ $enlace['text'] }}
+                    </x-nav-link>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <div id="menu-movil" x-show="obert" x-cloak class="border-t border-linia sm:hidden">
+        <div class="py-2">
             @foreach ($enlaces as $enlace)
                 <x-responsive-nav-link :href="$enlace['ruta']" :active="$enlace['actiu']">
                     <x-icona :nom="$enlace['icona']" class="h-5 w-5" />
@@ -85,13 +98,13 @@
             @endforeach
         </div>
 
-        <div class="border-t border-tinta-200 py-4 dark:border-tinta-800">
+        <div class="border-t border-linia py-4">
             <div class="px-4">
-                <p class="text-base font-medium text-tinta-900 dark:text-tinta-50">{{ $usuari?->name }}</p>
-                <p class="text-sm text-tinta-500 dark:text-tinta-400">{{ $usuari?->email }}</p>
+                <p class="text-sm font-medium text-tinta">{{ $usuari?->name }}</p>
+                <p class="text-xs text-tinta-3">{{ $usuari?->email }}</p>
             </div>
 
-            <div class="mt-3 space-y-1">
+            <div class="mt-3">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     <x-icona nom="perfil" class="h-5 w-5" />
                     {{ __('app.nav.perfil') }}

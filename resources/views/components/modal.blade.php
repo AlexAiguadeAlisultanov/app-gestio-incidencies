@@ -59,12 +59,12 @@
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
     >
-        <div class="absolute inset-0 bg-tinta-950/50"></div>
+        <div class="absolute inset-0 bg-fons/80 backdrop-blur-sm"></div>
     </div>
 
     <div
         x-show="show"
-        class="mb-6 transform overflow-hidden rounded-panell border border-tinta-200 bg-white shadow-elevat transition-all sm:mx-auto sm:w-full dark:border-tinta-800 dark:bg-tinta-900 {{ $maxWidth }}"
+        class="mb-6 transform overflow-hidden rounded-panell border border-linia bg-fons-2 shadow-elevat transition-all sm:mx-auto sm:w-full {{ $maxWidth }}"
         x-transition:enter="ease-out duration-200"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

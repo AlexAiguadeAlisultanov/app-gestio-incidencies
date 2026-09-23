@@ -2,14 +2,14 @@
     <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('acceso.verificar.titulo_pagina')]) }}</x-slot>
 
     <header class="mb-8">
-        <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('acceso.verificar.titulo') }}</h1>
-        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+        <h1 class="text-xl font-semibold tracking-tight text-tinta">{{ __('acceso.verificar.titulo') }}</h1>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-2">
             {{ __('acceso.verificar.entrada') }}
         </p>
     </header>
 
     @if (session('status') == 'verification-link-sent')
-        <div role="status" class="mb-6 rounded-control bg-estat-resolt-fons px-4 py-3 text-sm font-medium text-estat-resolt dark:bg-estat-resolt/20 dark:text-estat-resolt-clar">
+        <div role="status" class="mb-6 rounded-control border border-estat-resolt/30 bg-estat-resolt-fons px-4 py-3 text-sm font-medium text-estat-resolt">
             {{ __('acceso.verificar.enviado') }}
         </div>
     @endif

@@ -34,7 +34,7 @@
             <x-input-label for="telefono" :value="__('reparadores.campos.telefono')" />
             <x-text-input id="telefono" name="telefono" type="tel" class="mt-2" required maxlength="255"
                           :value="old('telefono', $fitxa->telefono ?? '')" :placeholder="__('reparadores.formulario.telefono_pista')" />
-            <p class="mt-2 text-xs text-tinta-500 dark:text-tinta-400">{{ __('reparadores.formulario.telefono_nota') }}</p>
+            <p class="mt-2 text-xs text-tinta-3">{{ __('reparadores.formulario.telefono_nota') }}</p>
             <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
         </div>
     </div>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="flex flex-wrap items-center gap-3 border-t border-tinta-200 pt-6 dark:border-tinta-800">
+    <div class="flex flex-wrap items-center gap-3 border-t border-linia-suau pt-6">
         <x-primary-button>
             <x-icona nom="{{ $edicio ? 'editar' : 'afegir' }}" class="h-4 w-4" />
             {{ $edicio ? __('app.acciones.guardar_cambios') : __('reparadores.formulario.enviar') }}
