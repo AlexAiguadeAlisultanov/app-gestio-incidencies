@@ -1,31 +1,28 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+    <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('acceso.verificar.titulo_pagina')]) }}</x-slot>
+
+    <header class="mb-8">
+        <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('acceso.verificar.titulo') }}</h1>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+            {{ __('acceso.verificar.entrada') }}
+        </p>
+    </header>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+        <div role="status" class="mb-6 rounded-control bg-estat-resolt-fons px-4 py-3 text-sm font-medium text-estat-resolt dark:bg-estat-resolt/20 dark:text-estat-resolt-clar">
+            {{ __('acceso.verificar.enviado') }}
         </div>
     @endif
 
-    <div class="mt-4 flex items-center justify-between">
+    <div class="flex flex-wrap items-center gap-3">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
-
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
+            <x-primary-button>{{ __('acceso.verificar.reenviar') }}</x-primary-button>
         </form>
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-
-            <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                {{ __('Log Out') }}
-            </button>
+            <button type="submit" class="boto-discret">{{ __('acceso.verificar.salir') }}</button>
         </form>
     </div>
 </x-guest-layout>

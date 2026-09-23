@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="color-scheme" content="light dark">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ $titol ?? __('app.marca') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    <body class="min-h-full font-sans">
+        <div class="flex min-h-screen flex-col px-4 py-6 sm:px-6">
+            <header class="flex justify-end">
+                <x-selector-idioma />
+            </header>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+            <div class="flex flex-1 flex-col justify-center py-8">
+                <div class="mx-auto w-full max-w-md">
+                    <a href="{{ url('/') }}" class="mx-auto flex w-fit items-center gap-3 rounded-control px-1 py-1">
+                        <x-application-logo class="h-9 w-9 text-acent-600 dark:text-acent-400" />
+                        <span class="text-base font-medium tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('app.marca') }}</span>
+                    </a>
+
+                    <div class="mt-8 rounded-panell border border-tinta-200 bg-white p-8 shadow-suau dark:border-tinta-800 dark:bg-tinta-900">
+                        {{ $slot }}
+                    </div>
+
+                    <p class="mt-8 text-center text-xs leading-relaxed text-tinta-500 dark:text-tinta-400">
+                        {{ __('app.reclamo') }}
+                    </p>
+                </div>
             </div>
         </div>
     </body>

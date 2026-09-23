@@ -1,62 +1,67 @@
-<!DOCTYPE html>
-<html lang="es">
+@php
+    $fitxa = $reparadors ?? null;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Detalles del Reparador</title>
-</head>
+    $categories = $fitxa
+        ? \App\Models\Categories::where('reparador_id', $fitxa->id)->orderBy('tipus')->get()
+        : collect();
+@endphp
 
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+<x-app-layout>
+    <x-slot name="titol">{{ __('app.titulo', ['pagina' => $fitxa->nombre ?? __('reparadores.titulo_ficha')]) }}</x-slot>
 
-                <div class="panel-body text-center">
+    <x-slot name="header">
+        <a href="{{ url('/profesors/reparadors') }}" class="inline-flex items-center gap-2 rounded-control text-sm font-medium text-tinta-600 hover:text-tinta-900 dark:text-tinta-400 dark:hover:text-tinta-100">
+            <x-icona nom="enrere" class="h-4 w-4" />
+            {{ __('reparadores.ficha.volver') }}
+        </a>
 
-                    @if(Session::has('message'))
-                    <div class="alert alert-primary" role="alert">
-                        {{ Session::get('message') }}
-                    </div>
+        @if ($fitxa)
+            <h1 class="mt-4 text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">
+                {{ $fitxa->nombre }} {{ $fitxa->apellidos }}
+            </h1>
+        @endif
+    </x-slot>
+
+    @if (! $fitxa)
+        <div class="targeta flex flex-col items-center gap-4 px-6 py-16 text-center">
+            <x-icona nom="avis" class="h-10 w-10 text-tinta-400" />
+            <p class="text-base font-medium text-tinta-900 dark:text-tinta-50">{{ __('reparadores.ficha.no_existe') }}</p>
+            <a href="{{ url('/profesors/reparadors') }}" class="boto-primari">{{ __('reparadores.ficha.volver') }}</a>
+        </div>
+    @else
+        <div class="mx-auto max-w-2xl space-y-8">
+            <section class="targeta p-6 sm:p-8">
+                <h2 class="text-sm font-medium uppercase tracking-wide text-tinta-500 dark:text-tinta-400">{{ __('reparadores.ficha.contacto') }}</h2>
+
+                <dl class="mt-6 grid gap-6 sm:grid-cols-2">
+                    <x-fitxa-camp :etiqueta="__('reparadores.campos.telefono')" icona="telefon">{{ $fitxa->telefono }}</x-fitxa-camp>
+                    <x-fitxa-camp :etiqueta="__('reparadores.campos.correo')" icona="correu">{{ $fitxa->email }}</x-fitxa-camp>
+                    <x-fitxa-camp :etiqueta="__('reparadores.campos.direccion')" icona="lloc">{{ $fitxa->direccion }}</x-fitxa-camp>
+                    <x-fitxa-camp :etiqueta="__('reparadores.campos.ciudad')" icona="ciutat">{{ $fitxa->ciudad }}</x-fitxa-camp>
+                </dl>
+
+                <div class="mt-8 border-t border-tinta-200 pt-8 dark:border-tinta-800">
+                    <h2 class="text-sm font-medium uppercase tracking-wide text-tinta-500 dark:text-tinta-400">{{ __('reparadores.ficha.de_que') }}</h2>
+
+                    @if ($categories->isEmpty())
+                        <p class="mt-4 text-sm text-tinta-600 dark:text-tinta-400">{{ __('reparadores.ficha.sin_categoria') }}</p>
+                    @else
+                        <p class="mt-4 flex flex-wrap gap-2">
+                            @foreach ($categories as $categoria)
+                                <span class="xip bg-acent-50 text-acent-700 dark:bg-acent-900/40 dark:text-acent-200"><x-nom-categoria :tipus="$categoria->tipus" /></span>
+                            @endforeach
+                        </p>
                     @endif
-
-                    <div class="mb-3">
-                        <p class="h5 fw-bold">Nombre:</p>
-                        <p class="h6 mb-3">{{ $reparadors->nombre }}</p>
-                    </div>
-
-                    <div class="mb-3">
-                        <p class="h5 fw-bold">Apellidos:</p>
-                        <p class="h6 mb-3">{{ $reparadors->apellidos }}</p>
-                    </div>
-
-                    <div class="mb-3">
-                        <p class="h5 fw-bold">Email:</p>
-                        <p class="h6 mb-3">{{ $reparadors->email }}</p>
-                    </div>
-
-                    <div class="mb-3">
-                        <p class="h5 fw-bold">Telefono:</p>
-                        <p class="h6 mb-3">{{ $reparadors->telefono }}</p>
-                    </div>
-
-                    <div class="mb-3">
-                        <p class="h5 fw-bold">Direccion:</p>
-                        <p class="h6 mb-3">{{ $reparadors->direccion }}</p>
-                    </div>
-
-                    <div class="mb-3">
-                        <p class="h5 fw-bold">Ciudad</p>
-                        <p class="h6 mb-3">{{ $reparadors->ciudad }}</p>
-                    </div>
                 </div>
+            </section>
+
+            <div class="flex flex-wrap gap-3">
+                <a href="{{ route('profesors/reparadors/actualitzar', $fitxa->id) }}" class="boto-primari">
+                    <x-icona nom="editar" class="h-4 w-4" />
+                    {{ __('reparadores.ficha.editar') }}
+                </a>
+                <a href="{{ url('/profesors/reparadors') }}" class="boto-secundari">{{ __('reparadores.ficha.volver') }}</a>
             </div>
         </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eAEXL6b5qvyJcYUAfx12+COZlJSX3e6l5Ie6L4q6LdTN3kK1C3R8jDXsX5Y3WfKn" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    @endif
+</x-app-layout>

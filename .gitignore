@@ -1,0 +1,14 @@
+
+# Dependencias: se instalan con composer install y npm install, no se versionan.
+/vendor
+/node_modules
+
+# Configuracion con credenciales. Se parte de .env.example y se rellena a mano.
+.env
+.env.backup
+.env.production
+
+# El marcador del servidor de desarrollo de Vite. Si este fichero existe, Laravel
+# apunta los estilos al servidor de desarrollo y la web se queda sin CSS.
+/public/hot
+/public/storage

@@ -46,7 +46,7 @@ class IncidenciesController extends Controller
         $incidencies->estat = $request->estat;
         $incidencies->lloc = $request->lloc;
         $incidencies->user_id = $request->user_id;
-        $incidencies->categories_id = $request->categoria_id;
+        $incidencies->categoria_id = $request->categoria_id;
         $incidencies->created_at = (new DateTime)->getTimestamp();
         $incidencies->save();
 
@@ -92,7 +92,7 @@ class IncidenciesController extends Controller
         $incidencies->estat = $request->estat;
         $incidencies->lloc = $request->lloc;
         $incidencies->user_id = $request->user_id;
-        $incidencies->categories_id = $request->categoria_id;
+        $incidencies->categoria_id = $request->categoria_id;
         $incidencies->updated_at = (new DateTime)->getTimestamp();
         $incidencies->save();
 

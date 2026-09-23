@@ -20,13 +20,13 @@ class ReparadorsController extends Controller
     public function crear()
     {
         $reparadors = Reparadors::all();
-        return view('resources/views/profesors/reparadors/crear.blade.php', compact('reparadors'));
+        return view('profesors.reparadors.crear', compact('reparadors'));
     }
     public function store(ItemCreateRequest $request)
     {
 
         $reparadors = new Reparadors;
-        $reparadors->titol = $request->nombre;
+        $reparadors->nombre = $request->nombre;
         $reparadors->apellidos = $request->apellidos;
         $reparadors->email = $request->email;
         $reparadors->telefono = $request->telefono;

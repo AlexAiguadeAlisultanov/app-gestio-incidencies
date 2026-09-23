@@ -1,59 +1,57 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <x-slot name="titol">{{ __('app.titulo', ['pagina' => __('acceso.registro.titulo')]) }}</x-slot>
+
+    <header class="mb-8">
+        <h1 class="text-2xl font-semibold tracking-tight text-tinta-900 dark:text-tinta-50">{{ __('acceso.registro.titulo') }}</h1>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-600 dark:text-tinta-400">
+            {{ __('acceso.registro.entrada') }}
+        </p>
+    </header>
+
+    <form method="POST" action="{{ route('register') }}" class="space-y-6">
         @csrf
 
-        <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-input-label for="name" :value="__('acceso.campos.nombre')" />
+            <x-text-input id="name" class="mt-2" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+        <div>
+            <x-input-label for="email" :value="__('acceso.campos.correo')" />
+            <x-text-input id="email" class="mt-2" type="email" name="email" :value="old('email')" required autocomplete="username" :placeholder="__('acceso.campos.correo_pista')" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <div>
+            <x-input-label for="rol_usuari" :value="__('acceso.registro.rol')" />
+            {{-- El name del campo y los valores son los que espera el controlador.
+                 Solo cambia la etiqueta que se lee. --}}
+            <x-select-input id="rol_usuari" name="rol_usuari" class="mt-2" required>
+                <option value="profesor" @selected(old('rol_usuari') === 'profesor')>{{ __('vocabulario.roles.profesor') }}. {{ __('acceso.registro.rol_profesor') }}</option>
+                <option value="reparador" @selected(old('rol_usuari') === 'reparador')>{{ __('vocabulario.roles.reparador') }}. {{ __('acceso.registro.rol_reparador') }}</option>
+            </x-select-input>
+            <x-input-error :messages="$errors->get('rol_usuari')" class="mt-2" />
+        </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
+        <div>
+            <x-input-label for="password" :value="__('acceso.campos.contrasena')" />
+            <x-text-input id="password" class="mt-2" type="password" name="password" required autocomplete="new-password" />
+            <p class="mt-2 text-xs text-tinta-500 dark:text-tinta-400">{{ __('acceso.registro.contrasena_nota') }}</p>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
+        <div>
+            <x-input-label for="password_confirmation" :value="__('acceso.campos.contrasena_repetir')" />
+            <x-text-input id="password_confirmation" class="mt-2" type="password" name="password_confirmation" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <!-- Rol del Usuario -->
-        <div class="mt-4">
-            <x-input-label for="rol_usuari" :value="__('Rol del Usuario')" />
-            <x-text-input id="rol_usuari" class="block mt-1 w-full" type="text" name="rol_usuari" :value="old('rol_usuari')" required autofocus />
-            <x-input-error :messages="$errors->get('rol_usuari')" class="mt-2" />
-        </div>
-        
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
+        <x-primary-button class="w-full">{{ __('acceso.registro.enviar') }}</x-primary-button>
     </form>
+
+    <p class="mt-8 border-t border-tinta-200 pt-6 text-center text-sm text-tinta-600 dark:border-tinta-800 dark:text-tinta-400">
+        {{ __('acceso.registro.con_cuenta') }}
+        <a href="{{ route('login') }}" class="rounded-control font-medium text-acent-600 hover:text-acent-700 dark:text-acent-400 dark:hover:text-acent-300">{{ __('acceso.registro.entrar') }}</a>
+    </p>
 </x-guest-layout>

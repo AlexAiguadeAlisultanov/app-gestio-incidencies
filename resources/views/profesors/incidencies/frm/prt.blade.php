@@ -1,159 +1,110 @@
-<!DOCTYPE html>
-<html lang="es">
+@php
+    // Campos de la incidencia. Se incluye dentro de un <form> ya abierto,
+    // tanto para crear (panel de inicio) como para editar.
+    // Los name de los campos son los que leen IncidenciesController@store y @update.
+    $fitxa = $incidencies ?? null;
+    $edicio = ! empty($fitxa?->id);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="apple-touch-startup-image" href="https://www.wepora.com/asset/img/wepora-logo.png">
-    <link rel="icon" type="image/x-icon" href="https://www.wepora.com/asset/img/wepora-logo.png">
-    <meta name="description" content="Wepora is a best Graphics, software and Web Development company and provides all IT solutions to their client. In India.." />
-    <meta name="Keywords" content="website design | website development | website logo  |  website hosting  | logo design| logo design ideas  | SEO | android |  best software company in India | cheapest | graphic design | Shrikant Kushwaha">
-    <meta name="author" content="contain by Wepora team">
-    <meta name="copyright" content="Copyright © 2020 Wepora" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LD65H6P9IkOz5jqm4KPHv9JwR+pL/LThbYL7nE/T3sIpxcAzz5W3wAPMhiZ9j1Wz" crossorigin="anonymous"></script>
-    <title>Título de tu página</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="container">
-                    <section class="panel">
-                        @if (!empty($incidencies->id))
+    // Los valores de `estat` se guardan tal como están en la base; aquí solo cambia la
+    // etiqueta que se lee en el desplegable.
+    $estats = [
+        'Pendent' => __('vocabulario.estados.pendent'),
+        'En curs' => __('vocabulario.estados.curs'),
+        'Resolt' => __('vocabulario.estados.resolt'),
+    ];
 
-                        <div class="mb-3">
-                            <label for="titol" class="negrita">Titol:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el titol del producto" required="required" name="titol" type="text" id="titol">
-                            </div>
-                        </div>
+    $estatActual = old('estat', $fitxa->estat ?? 'Pendent');
 
-                        <div class="mb3">
-                            <label for="descripcio" class="negrita">Descripcio:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la descripcio" required="required" name="descripcio" type="text" id="descripcio">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="data" class="negrita">Data:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la data" required="required" name="data" type="text" id="data" value="{{ $incidencies->data ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="hora" class="negrita">Hora:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la hora" required="required" name="hora" type="text" id="hora" value="{{ $incidencies->hora ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="estat" class="negrita">Estat:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el estat" required="required" name="estat" type="text" id="estat" value="{{ $incidencies->estat ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="lloc" class="negrita">Lloc:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el lloc" required="required" name="lloc" type="text" id="lloc" value="{{ $incidencies->lloc ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="user_id" class="negrita">User_ID:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el User_ID" required="required" name="user_id" type="text" id="user_id" value="{{ $incidencies->user_id ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="categoria_id" class="negrita">Categoria_ID:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el Categoria_ID" required="required" name="categoria_id" type="text" id="categoria_id" value="{{ $incidencies->categories_id ?? '' }}">
-                            </div>
-                        </div>
+    // El controlador no pasa las categorías a la vista, así que se leen aquí para
+    // poder elegirlas por nombre en vez de escribir un número a mano. El value que
+    // viaja sigue siendo el id.
+    $categories = \App\Models\Categories::orderBy('tipus')->pluck('tipus', 'id');
+    $etiquetesCategoria = trans('vocabulario.categorias');
+    $categoriaActual = old('categoria_id', $fitxa->categoria_id ?? null);
 
-                        @else
-                        <div class="mb-3">
-                            <label for="nombre" class="negrita">Nombre:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el nombre del producto" required="required" name="nombre" type="text" id="nombre">
-                            </div>
-                        </div>
-                        <div class="mb3">
-                            <label for="descripcion" class="negrita">Descripcion:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la descripcion" required="required" name="descripcion" type="text" id="descripcion">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="data" class="negrita">Data:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la data" required="required" name="data" type="date" id="data" value="{{ $incidencies->data ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="hora" class="negrita">Hora:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la hora" required="required" name="hora" type="date" id="hora" value="{{ $incidencies->hora ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="estat" class="negrita">Estat:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el estat" required="required" name="estat" type="text" id="estat" value="{{ $incidencies->estat ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="lloc" class="negrita">Lloc:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el lloc" required="required" name="lloc" type="text" id="lloc" value="{{ $incidencies->lloc ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="user_id" class="negrita">User_ID:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el User_ID" required="required" name="user_id" type="text" id="user_id" value="{{ $incidencies->user_id ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="categoria_id" class="negrita">Categoria_ID:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el Categoria_ID" required="required" name="categoria_id" type="text" id="categoria_id" value="{{ $incidencies->categoria_id ?? '' }}">
-                            </div>
-                        </div>
+    $propietari = \App\Models\User::find($fitxa->user_id ?? auth()->id());
+    $propietariId = old('user_id', $fitxa->user_id ?? auth()->id());
 
-                        @endif
+    $hora = old('hora', \Illuminate\Support\Str::substr((string) ($fitxa->hora ?? ''), 0, 5));
+    $data = old('data', $fitxa->data ?? now()->toDateString());
+@endphp
 
-                        @if(session('rol_usuari') == 'manteniment')
-                        <br>
-                        <button type="submit" class="btn btn-info">Guardar</button>
-                        <a href="{{ route('profesors/incidencies') }}" class="btn btn-warning">Cancelar</a>
-                        @else
-                        <button type="submit" class="btn btn-info">Guardar</button>
-                        @endif
-                        <br>
-                        <br>
-                    </section>
-                </div>
-            </div>
+<div class="space-y-6">
+    <div>
+        <x-input-label for="titol" :value="__('incidencias.formulario.titulo')" />
+        <x-text-input id="titol" name="titol" type="text" class="mt-2" required maxlength="255"
+                      :value="old('titol', $fitxa->titol ?? '')"
+                      :placeholder="__('incidencias.formulario.titulo_pista')" />
+        <x-input-error :messages="$errors->get('titol')" class="mt-2" />
+    </div>
+
+    <div>
+        <x-input-label for="descripcio" :value="__('incidencias.formulario.descripcion')" />
+        <x-textarea-input id="descripcio" name="descripcio" class="mt-2" rows="3" required
+                          :placeholder="__('incidencias.formulario.descripcion_pista')">{{ old('descripcio', $fitxa->descripcio ?? '') }}</x-textarea-input>
+        <x-input-error :messages="$errors->get('descripcio')" class="mt-2" />
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+            <x-input-label for="lloc" :value="__('incidencias.formulario.sitio')" />
+            <x-text-input id="lloc" name="lloc" type="text" class="mt-2" required maxlength="255"
+                          :value="old('lloc', $fitxa->lloc ?? '')"
+                          :placeholder="__('incidencias.formulario.sitio_pista')" />
+            <x-input-error :messages="$errors->get('lloc')" class="mt-2" />
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eAEXL6b5qvyJcYUAfx12+COZlJSX3e6l5Ie6L4q6LdTN3kK1C3R8jDXsX5Y3WfKn" crossorigin="anonymous"></script>
-    </body>
-</html>
+
+        <div>
+            <x-input-label for="categoria_id" :value="__('incidencias.formulario.categoria')" />
+            <x-select-input id="categoria_id" name="categoria_id" class="mt-2" required>
+                <option value="" disabled @selected($categoriaActual === null)>{{ __('incidencias.formulario.categoria_vacia') }}</option>
+                @foreach ($categories as $id => $tipus)
+                    <option value="{{ $id }}" @selected((string) $categoriaActual === (string) $id)>{{ $etiquetesCategoria[$tipus] ?? $tipus }}</option>
+                @endforeach
+            </x-select-input>
+            <p class="mt-2 text-xs text-tinta-500 dark:text-tinta-400">{{ __('incidencias.formulario.categoria_pista') }}</p>
+            <x-input-error :messages="$errors->get('categoria_id')" class="mt-2" />
+        </div>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-3">
+        <div>
+            <x-input-label for="data" :value="__('incidencias.formulario.dia')" />
+            <x-text-input id="data" name="data" type="date" class="mt-2" required :value="$data" />
+            <x-input-error :messages="$errors->get('data')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="hora" :value="__('incidencias.formulario.hora')" />
+            <x-text-input id="hora" name="hora" type="time" class="mt-2" required :value="$hora" />
+            <x-input-error :messages="$errors->get('hora')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="estat" :value="__('incidencias.formulario.estado')" />
+            <x-select-input id="estat" name="estat" class="mt-2" required>
+                @foreach ($estats as $valor => $etiqueta)
+                    <option value="{{ $valor }}" @selected($estatActual === $valor)>{{ $etiqueta }}</option>
+                @endforeach
+            </x-select-input>
+            <x-input-error :messages="$errors->get('estat')" class="mt-2" />
+        </div>
+    </div>
+
+    {{-- Quién la da de alta viaja en el formulario, pero no se escribe a mano --}}
+    <input type="hidden" name="user_id" value="{{ $propietariId }}">
+
+    <p class="flex items-center gap-2 text-xs text-tinta-500 dark:text-tinta-400">
+        <x-icona nom="persona" class="h-4 w-4" />
+        {{ __('incidencias.formulario.a_nombre_de', ['nombre' => $propietari?->name ?? __('incidencias.formulario.usuario', ['id' => $propietariId])]) }}
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3 border-t border-tinta-200 pt-6 dark:border-tinta-800">
+        <x-primary-button>
+            <x-icona nom="{{ $edicio ? 'editar' : 'afegir' }}" class="h-4 w-4" />
+            {{ $edicio ? __('app.acciones.guardar_cambios') : __('incidencias.formulario.enviar') }}
+        </x-primary-button>
+
+        <a href="{{ url('/profesors/incidencies') }}" class="boto-discret">{{ __('app.acciones.cancelar') }}</a>
+    </div>
+</div>

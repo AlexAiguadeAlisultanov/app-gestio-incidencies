@@ -1,92 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
+@php
+    // Campos del reparador. Se incluye dentro de un <form> ya abierto, al crear y al editar.
+    // Los name son los que lee ReparadorsController.
+    $fitxa = $reparadors ?? null;
+    $edicio = ! empty($fitxa?->id);
+@endphp
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="apple-touch-startup-image" href="https://www.wepora.com/asset/img/wepora-logo.png">
-    <link rel="icon" type="image/x-icon" href="https://www.wepora.com/asset/img/wepora-logo.png">
-    <meta name="description" content="Wepora is a best Graphics, software and Web Development company and provides all IT solutions to their client. In India.." />
-    <meta name="Keywords" content="website design | website development | website logo  |  website hosting  | logo design| logo design ideas  | SEO | android |  best software company in India | cheapest | graphic design | Shrikant Kushwaha">
-    <meta name="author" content="contain by Wepora team">
-    <meta name="copyright" content="Copyright © 2020 Wepora" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LD65H6P9IkOz5jqm4KPHv9JwR+pL/LThbYL7nE/T3sIpxcAzz5W3wAPMhiZ9j1Wz" crossorigin="anonymous"></script>
-    <title>Reparadors</title>
-</head>
-
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="container">
-                    <section class="panel">
-                        @if (!empty($reparadors->id))
-
-                        <div class="mb-3">
-                            <label for="nombre" class="negrita">Nombre:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el nombre del producto" required="required" name="nombre" type="text" id="nombre">
-                            </div>
-                        </div>
-
-                        <div class="mb3">
-                            <label for="apellidos" class="negrita">Apellidos:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce los apellidos" required="required" name="apellidos" type="text" id="apellidos">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="email" class="negrita">Email:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el email" required="required" name="email" type="text" id="email" value="{{ $reparadors->email ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="telefono" class="negrita">Telefono:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce el telefono" required="required" name="telefono" type="text" id="telefono" value="{{ $reparadors->telefono ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="direccion" class="negrita">Direccion:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la direccion" required="required" name="direccion" type="text" id="direccion" value="{{ $reparadors-> direccion ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb3">
-                            <label for="ciudad" class="negrita">Ciudad:</label>
-                            <div>
-                                <input class="form-control" placeholder="Introduce la ciudad" required="required" name="ciudad" type="text" id="ciudad" value="{{ $reparadors->ciudad ?? '' }}">
-                            </div>
-                        </div>
-                        <br>
-
-                        @endif
-
-                        @if(session('rol_usuari') == 'profesor')
-                        <br>
-                        <button type="submit" class="btn btn-info">Guardar</button>
-                        <a href="{{ route('profesors/reparadors') }}" class="btn btn-warning">Cancelar</a>
-                        @else
-                        <button type="submit" class="btn btn-info">Guardar</button>
-                        @endif
-                        <br>
-                        <br>
-                    </section>
-                </div>
-            </div>
+<div class="space-y-6">
+    <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+            <x-input-label for="nombre" :value="__('reparadores.campos.nombre')" />
+            <x-text-input id="nombre" name="nombre" type="text" class="mt-2" required maxlength="255"
+                          :value="old('nombre', $fitxa->nombre ?? '')" />
+            <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eAEXL6b5qvyJcYUAfx12+COZlJSX3e6l5Ie6L4q6LdTN3kK1C3R8jDXsX5Y3WfKn" crossorigin="anonymous"></script>
-</body>
 
-</html>
+        <div>
+            <x-input-label for="apellidos" :value="__('reparadores.campos.apellidos')" />
+            <x-text-input id="apellidos" name="apellidos" type="text" class="mt-2" required maxlength="255"
+                          :value="old('apellidos', $fitxa->apellidos ?? '')" />
+            <x-input-error :messages="$errors->get('apellidos')" class="mt-2" />
+        </div>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+            <x-input-label for="email" :value="__('reparadores.campos.correo')" />
+            <x-text-input id="email" name="email" type="email" class="mt-2" required maxlength="255"
+                          :value="old('email', $fitxa->email ?? '')" :placeholder="__('reparadores.formulario.correo_pista')" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="telefono" :value="__('reparadores.campos.telefono')" />
+            <x-text-input id="telefono" name="telefono" type="tel" class="mt-2" required maxlength="255"
+                          :value="old('telefono', $fitxa->telefono ?? '')" :placeholder="__('reparadores.formulario.telefono_pista')" />
+            <p class="mt-2 text-xs text-tinta-500 dark:text-tinta-400">{{ __('reparadores.formulario.telefono_nota') }}</p>
+            <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
+        </div>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+            <x-input-label for="direccion" :value="__('reparadores.campos.direccion')" />
+            <x-text-input id="direccion" name="direccion" type="text" class="mt-2" required maxlength="255"
+                          :value="old('direccion', $fitxa->direccion ?? '')" />
+            <x-input-error :messages="$errors->get('direccion')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="ciudad" :value="__('reparadores.campos.ciudad')" />
+            <x-text-input id="ciudad" name="ciudad" type="text" class="mt-2" required maxlength="255"
+                          :value="old('ciudad', $fitxa->ciudad ?? '')" />
+            <x-input-error :messages="$errors->get('ciudad')" class="mt-2" />
+        </div>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3 border-t border-tinta-200 pt-6 dark:border-tinta-800">
+        <x-primary-button>
+            <x-icona nom="{{ $edicio ? 'editar' : 'afegir' }}" class="h-4 w-4" />
+            {{ $edicio ? __('app.acciones.guardar_cambios') : __('reparadores.formulario.enviar') }}
+        </x-primary-button>
+
+        <a href="{{ url('/profesors/reparadors') }}" class="boto-discret">{{ __('app.acciones.cancelar') }}</a>
+    </div>
+</div>

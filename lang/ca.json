@@ -1,0 +1,15 @@
+{
+    "Hello!": "Hola,",
+    "Whoops!": "Vaja,",
+    "Regards": "Una salutació",
+    "All rights reserved.": "Tots els drets reservats.",
+    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": "Si no pots prémer el botó \":actionText\", copia aquesta adreça i enganxa-la al navegador:",
+    "Reset Password Notification": "Canviar la contrasenya",
+    "You are receiving this email because we received a password reset request for your account.": "Reps aquest correu perquè algú ha demanat canviar la contrasenya del teu compte.",
+    "Reset Password": "Canviar la contrasenya",
+    "This password reset link will expire in :count minutes.": "Aquest enllaç caduca d'aquí a :count minuts.",
+    "If you did not request a password reset, no further action is required.": "Si no has estat tu, no has de fer res.",
+    "Verify Email Address": "Verificar el correu",
+    "Please click the button below to verify your email address.": "Prem el botó per verificar la teva adreça de correu.",
+    "If you did not create an account, no further action is required.": "Si no has creat cap compte, no has de fer res."
+}

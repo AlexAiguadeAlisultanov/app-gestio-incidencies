@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\Idioma;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,26 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+/* Cambio de idioma: guarda la elección en la sesión y devuelve a la página de origen */
+Route::get('idioma/{idioma}', function (string $idioma) {
+    if (Idioma::admitido($idioma)) {
+        session()->put(Idioma::CLAVE, $idioma);
+    }
+
+    // Se vuelve a donde estaba la persona. Solo se acepta una dirección de esta misma
+    // aplicación y que no sea el propio cambio de idioma, para no dar vueltas ni acabar
+    // en otro sitio; si no cuadra, se vuelve a la portada.
+    $origen = (string) url()->previous();
+    $ruta = (string) parse_url($origen, PHP_URL_PATH);
+    $mismoSitio = str_starts_with($origen, url('/'));
+
+    if (! $mismoSitio || str_starts_with($ruta, '/idioma/')) {
+        $origen = url('/');
+    }
+
+    return redirect()->to($origen);
+})->name('idioma');
+
 Route::get('/dashboard', 'App\Http\Controllers\IncidenciesController@crear')->name('/dashboard');
 Route::put('profesors/incidencies/store', 'App\Http\Controllers\IncidenciesController@store')->name('profesors/incidencies/store');
  

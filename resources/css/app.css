@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        @apply bg-tinta-50 text-tinta-900 antialiased dark:bg-tinta-950 dark:text-tinta-100;
+    }
+
+    /* Un sol estil de focus a tota l'aplicacio, sempre visible amb teclat */
+    :focus-visible {
+        @apply outline-none ring-2 ring-acent-500 ring-offset-2 ring-offset-tinta-50 dark:ring-acent-300 dark:ring-offset-tinta-950;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+@layer components {
+    .targeta {
+        @apply rounded-targeta border border-tinta-200 bg-white shadow-suau dark:border-tinta-800 dark:bg-tinta-900;
+    }
+
+    .boto {
+        @apply inline-flex items-center justify-center gap-2 rounded-control px-4 py-2 text-sm font-medium transition duration-200 ease-suau disabled:opacity-40;
+    }
+
+    .boto-primari {
+        @apply boto bg-acent-600 text-white hover:bg-acent-700 active:bg-acent-800 dark:bg-acent-500 dark:hover:bg-acent-400 dark:active:bg-acent-300 dark:active:text-tinta-950;
+    }
+
+    .boto-secundari {
+        @apply boto border border-tinta-300 bg-white text-tinta-700 hover:bg-tinta-100 dark:border-tinta-700 dark:bg-tinta-900 dark:text-tinta-200 dark:hover:bg-tinta-800;
+    }
+
+    .boto-discret {
+        @apply boto text-tinta-600 hover:bg-tinta-100 hover:text-tinta-900 dark:text-tinta-300 dark:hover:bg-tinta-800 dark:hover:text-tinta-50;
+    }
+
+    .boto-perill {
+        @apply boto bg-perill-600 text-white hover:bg-perill-500 dark:bg-perill-500 dark:hover:bg-perill-600;
+    }
+
+    .camp {
+        @apply block w-full rounded-control border-tinta-300 bg-white text-sm text-tinta-900 placeholder-tinta-400 shadow-sm transition duration-200 ease-suau focus:border-acent-500 focus:ring-acent-500 dark:border-tinta-700 dark:bg-tinta-900 dark:text-tinta-100 dark:placeholder-tinta-500 dark:focus:border-acent-400 dark:focus:ring-acent-400;
+    }
+
+    .etiqueta {
+        @apply block text-sm font-medium text-tinta-700 dark:text-tinta-300;
+    }
+
+    .xip {
+        @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
