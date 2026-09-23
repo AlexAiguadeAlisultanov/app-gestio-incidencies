@@ -1,0 +1,30 @@
+# Plano de despliegue. Render lo lee al pulsar el boton de DESPLIEGUE.md y crea
+# el servicio ya configurado. Las variables marcadas con 'sync: false' las
+# pregunta al desplegar, para que ningun secreto viva dentro del repositorio.
+services:
+  - type: web
+    name: gestor-de-incidencias
+    runtime: docker
+    plan: free
+    region: frankfurt
+    envVars:
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: APP_ENV
+        sync: false
+      - key: APP_DEBUG
+        sync: false
+      - key: DB_CONNECTION
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_DATABASE
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false

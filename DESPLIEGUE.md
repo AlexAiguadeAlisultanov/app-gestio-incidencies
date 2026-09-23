@@ -6,6 +6,17 @@ y lanza las migraciones al arrancar, así que la base de datos se prepara sola.
 Los estilos compilados están versionados en `public/build`, de modo que el
 contenedor no necesita Node ni ejecutar `npm run build`.
 
+
+## El botón
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/AlexAiguadeAlisultanov/app-gestio-incidencies)
+
+Al pulsarlo, Render lee el `render.yaml` de este repositorio, crea el servicio
+con la configuración ya puesta y solo te pide los valores de las variables. Hace
+falta una cuenta de Render, que se crea entrando con GitHub y es gratis.
+
+Los pasos de abajo son lo mismo a mano, por si prefieres verlo.
+
 ## En Render
 
 1. New → Web Service, y conecta este repositorio.
